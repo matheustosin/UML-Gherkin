@@ -1,0 +1,136 @@
+@startuml
+class User {
+    Long id;
+    String name;
+    String email;
+    String phone;
+    String address;
+    String description;
+
+}
+class Partner {
+    Long id;
+    String name;
+    String email;
+    String phone;
+    String address;
+    String description;
+    PartnerCategoryEntity partnerCategory;
+
+}
+class PartnerCategory {
+    Long id;
+    String image;
+    String name;
+    String description;
+
+}
+class Country {
+    Long id;
+    String name;
+    String description;
+    String image;
+
+}
+class CountryPhoto {
+    Long id;
+    String url;
+    String description;
+    CountryEntity country;
+    String title;
+
+}
+class Answer {
+    Long id;
+    String description;
+    EnumBoolean ableToComplete;
+    QuestionEntity question;
+
+}
+class Requirement {
+    Long id;
+    String name;
+    String description;
+    RequirementType requirementType;
+    PartnerCategoryEntity partnerCategory;
+
+}
+class CountryRequirement {
+    Long id;
+    EnumBoolean completed;
+    CountryEntity country;
+    RequirementEntity requirement;
+
+}
+class Question {
+    Long id;
+    String description;
+    Integer position;
+    RequirementEntity requirement;
+    QuestionType questionType;
+
+}
+class Match {
+    Long id;
+    Long matchPercentage;
+    UserEntity user;
+    CountryEntity country;
+
+}
+class WeightCountryAnswer {
+    Long id;
+    Long weight;
+    CountryEntity country;
+    AnswerEntity answer;
+
+}
+class CountryInfo {
+    Long id;
+    String image;
+    String name;
+    String description;
+    CountryEntity country;
+
+}
+class SocialGroup {
+    Long id;
+    String name;
+    String link;
+    CountryEntity country;
+
+}
+class UserAnswer {
+    Long id;
+    UserEntity user;
+    QuestionEntity question;
+    AnswerEntity answer;
+
+}
+class Journey {
+    Long id;
+    LocalDate initialDate;
+    LocalDate finalDate;
+    UserEntity user;
+    CountryEntity country;
+
+}
+
+User ... Partner
+Partner ... PartnerCategory
+Partner ... CountryRequirement
+PartnerCategory ... Country
+Country ... WeightCountryAnswer
+Country ... Match
+Country ... Journey
+Country ... CountryPhoto
+CountryPhoto ... Answer
+CountryPhoto ... Match
+CountryPhoto ... Question
+User ... UserAnswer
+Answer ... UserAnswer
+Question ... SocialGroup
+Match ... CountryRequirement
+CountryRequirement ... SocialGroup
+CountryRequirement ... Requirement
+SocialGroup ... CountryInfo
+@enduml
